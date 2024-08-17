@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/app_theme.dart';
@@ -20,11 +21,12 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   DateTime selectedDate = DateTime.now();
   DateFormat selectedDateFormat = DateFormat('dd/MM/yyyy');
   GlobalKey<FormState> keyState = GlobalKey<FormState>();
+  late AppLocalizations localizations;
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     TasksProvider provider = Provider.of<TasksProvider>(context);
-    AppLocalizations? localizations = AppLocalizations.of(context);
+    localizations = AppLocalizations.of(context)!;
     return Container(
       height: MediaQuery.of(context).size.height * 0.55,
       padding: const EdgeInsets.all(20),
@@ -34,7 +36,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
         child: Column(
           children: [
             Text(
-              localizations!.newtask,
+              localizations.newtask,
               style: theme.textTheme.titleMedium?.copyWith(
                 color: provider.isDark ? AppTheme.white : AppTheme.black,
               ),
@@ -61,7 +63,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               maxLines: 3,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return localizations!.deserror;
+                  return localizations.deserror;
                 }
                 return null;
               },
@@ -133,11 +135,25 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
       onTimeout: () {
         Provider.of<TasksProvider>(context, listen: false).getTasks;
         Navigator.of(context).pop();
-        print('task added');
+        Fluttertoast.showToast(
+          msg: localizations.taskadded,
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: AppTheme.green,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
       },
     ).catchError(
-      (error) => print(
-        'Error while adding\n$error',
+      (_) => Fluttertoast.showToast(
+        msg: localizations.error,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: AppTheme.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
       ),
     );
   }

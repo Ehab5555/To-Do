@@ -26,4 +26,14 @@ class FirebaseFunctions {
     CollectionReference<TaskModel> tasksCollection = getTasksCollection();
     return tasksCollection.doc(taskId).delete();
   }
+
+  static Future<void> updateTasks(
+      {required TaskModel task, bool isDone = false}) async {
+    FirebaseFirestore.instance.collection('tasks').doc(task.id).update({
+      'title': task.title,
+      "description": task.description,
+      'isDone': isDone,
+      'date': task.date,
+    });
+  }
 }

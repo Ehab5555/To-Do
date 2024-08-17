@@ -41,7 +41,7 @@ class TodoApp extends StatelessWidget {
       locale: Locale(provider.language),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: Provider.of<TasksProvider>(context).themeMode,
+      themeMode: provider.themeMode,
     );
   }
 }

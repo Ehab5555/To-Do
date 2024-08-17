@@ -12,5 +12,7 @@
   "mode": "Mode",
   "language": "Language",
   "titleerror": "Task title cannot be empty",
-  "deserror": "Task description cannot be empty"
+  "deserror": "Task description cannot be empty",
+  "taskadded": "Task added , successfully",
+  "error": "Something went wrong"
 }
