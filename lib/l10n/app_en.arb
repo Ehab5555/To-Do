@@ -1,0 +1,16 @@
+{
+  "newtask": "Add new task",
+  "tasktitle": "Enter task title",
+  "taskdesc": "Enter task description",
+  "selecteddate": "Selecte Date",
+  "submit": "Submit",
+  "savechang": "Save Changes",
+  "edittask": "Edit task",
+  "settings": "Settings",
+  "dark": "Dark Mode",
+  "light": "Light Mode",
+  "mode": "Mode",
+  "language": "Language",
+  "titleerror": "Task title cannot be empty",
+  "deserror": "Task description cannot be empty"
+}
