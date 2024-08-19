@@ -11,6 +11,8 @@ import 'package:todo/tabs/tasks/tasks_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
+  const AddTaskBottomSheet({super.key});
+
   @override
   State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
 }
@@ -133,7 +135,9 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
     ).timeout(
       const Duration(microseconds: 100),
       onTimeout: () {
+        // ignore: use_build_context_synchronously
         Provider.of<TasksProvider>(context, listen: false).getTasks;
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pop();
         Fluttertoast.showToast(
           msg: localizations.taskadded,

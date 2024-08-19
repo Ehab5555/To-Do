@@ -5,6 +5,8 @@ import 'package:todo/tabs/tasks/tasks_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsTab extends StatelessWidget {
+  const SettingsTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     TasksProvider provider = Provider.of<TasksProvider>(context);

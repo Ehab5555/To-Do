@@ -3,7 +3,7 @@ import 'package:todo/firebase_functions.dart';
 import 'package:todo/models/task_model.dart';
 
 class TasksProvider with ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.dark;
+  ThemeMode themeMode = ThemeMode.light;
   String language = 'en';
   bool get isDark => themeMode == ThemeMode.dark;
   List<TaskModel> tasks = [];

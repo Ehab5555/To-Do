@@ -12,17 +12,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskUpdate extends StatelessWidget {
   static const String routeName = "task_update";
-  TextEditingController titleController = TextEditingController();
-
-  TextEditingController descriptionController = TextEditingController();
-
-  GlobalKey<FormState> formkey = GlobalKey();
-
-  late DateTime selectedDate = task.date;
-
-  DateFormat selectedDateFormat = DateFormat('dd/MM/yyyy');
-
-  late TaskModel task;
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final GlobalKey<FormState> formkey = GlobalKey();
+  late final DateTime selectedDate = task.date;
+  final DateFormat selectedDateFormat = DateFormat('dd/MM/yyyy');
+  late final TaskModel task;
+  TaskUpdate({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/app_theme.dart';
+import 'package:todo/auth/login_screen.dart';
+import 'package:todo/auth/register_screen.dart';
 import 'package:todo/home_screen.dart';
 import 'package:todo/tabs/tasks/task_update.dart';
 import 'package:todo/tabs/tasks/tasks_provider.dart';
@@ -21,21 +23,26 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => TasksProvider()..getTasks(),
-      child: TodoApp(),
+      child: const TodoApp(),
     ),
   );
 }
 
 class TodoApp extends StatelessWidget {
+  const TodoApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     TasksProvider provider = Provider.of(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        HomeScreen.routeName: (_) => HomeScreen(),
+        HomeScreen.routeName: (_) => const HomeScreen(),
         TaskUpdate.routeName: (_) => TaskUpdate(),
+        RegisterScreen.routeName: (_) => const RegisterScreen(),
+        LoginScreen.routeName: (_) => LoginScreen(),
       },
+      initialRoute: RegisterScreen.routeName,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(provider.language),

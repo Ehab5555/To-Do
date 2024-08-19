@@ -9,10 +9,10 @@ import 'package:todo/tabs/tasks/tasks_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskItem extends StatelessWidget {
-  TaskModel task;
-  Color color = AppTheme.green;
-  late AppLocalizations localizations;
-  TaskItem(this.task);
+  final TaskModel task;
+  final Color color = AppTheme.green;
+  late final AppLocalizations localizations;
+  TaskItem(this.task, {super.key});
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);

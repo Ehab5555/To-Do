@@ -5,7 +5,9 @@ import 'package:todo/tabs/tasks/add_task_bottom_sheet.dart';
 import 'package:todo/tabs/tasks/tasks_tab.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String routeName = '/';
+  static const String routeName = '/home';
+
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -14,8 +16,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentTabIndex = 0;
   List<Widget> tabs = [
-    TasksTab(),
-    SettingsTab(),
+    const TasksTab(),
+    const SettingsTab(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => showModalBottomSheet(
           context: context,
-          builder: (_) => AddTaskBottomSheet(),
+          builder: (_) => const AddTaskBottomSheet(),
         ),
         child: const Icon(Icons.add),
       ),

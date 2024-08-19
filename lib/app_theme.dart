@@ -39,6 +39,15 @@ class AppTheme {
         backgroundColor: primary,
       ),
     ),
+    appBarTheme: const AppBarTheme(
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: primary,
+      ),
+    ),
   );
   static ThemeData darkTheme = ThemeData(
     primaryColor: primary,

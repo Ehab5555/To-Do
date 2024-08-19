@@ -7,6 +7,8 @@ import 'package:todo/tabs/tasks/task_update.dart';
 import 'package:todo/tabs/tasks/tasks_provider.dart';
 
 class TasksTab extends StatelessWidget {
+  const TasksTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     TasksProvider tasksProvider = Provider.of<TasksProvider>(context);

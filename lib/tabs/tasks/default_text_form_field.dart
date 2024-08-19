@@ -3,30 +3,52 @@ import 'package:provider/provider.dart';
 import 'package:todo/app_theme.dart';
 import 'package:todo/tabs/tasks/tasks_provider.dart';
 
-class DefaultTextFormField extends StatelessWidget {
-  TextEditingController controller;
-  String hintText;
-  int? maxLines;
-  String? Function(String?)? validator;
+class DefaultTextFormField extends StatefulWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final int? maxLines;
+  final bool isPassword;
+  final String? Function(String?)? validator;
 
-  DefaultTextFormField(
-      {required this.controller,
+  const DefaultTextFormField(
+      {super.key,
+      required this.controller,
       required this.hintText,
-      this.maxLines,
+      this.isPassword = false,
+      this.maxLines = 1,
       this.validator});
 
+  @override
+  State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
+}
+
+class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
+  bool isObsecure = true;
   @override
   Widget build(BuildContext context) {
     TasksProvider provider = Provider.of<TasksProvider>(context);
     return TextFormField(
-      controller: controller,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      controller: widget.controller,
+      obscureText: isObsecure,
       style: TextStyle(
         color: provider.isDark
             ? AppTheme.white.withOpacity(0.6)
             : AppTheme.black.withOpacity(0.6),
       ),
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: widget.hintText,
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                onPressed: () {
+                  isObsecure = !isObsecure;
+                  setState(() {});
+                },
+                icon: Icon(
+                  isObsecure ? Icons.visibility_outlined : Icons.visibility_off,
+                ),
+              )
+            : null,
         hintStyle: TextStyle(
           color: provider.isDark
               ? AppTheme.white.withOpacity(0.6)
@@ -40,8 +62,8 @@ class DefaultTextFormField extends StatelessWidget {
           ),
         ),
       ),
-      maxLines: maxLines,
-      validator: validator,
+      maxLines: widget.maxLines,
+      validator: widget.validator,
     );
   }
 }
