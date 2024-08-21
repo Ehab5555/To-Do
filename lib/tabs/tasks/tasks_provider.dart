@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo/firebase_functions.dart';
 import 'package:todo/models/task_model.dart';
 
 class TasksProvider with ChangeNotifier {
   ThemeMode themeMode = ThemeMode.light;
   String language = 'en';
+  bool get isEnglish => language == 'en';
   bool get isDark => themeMode == ThemeMode.dark;
+  SharedPreferences? prefs;
   List<TaskModel> tasks = [];
   DateTime selectedDate = DateTime.now();
 
@@ -25,6 +28,7 @@ class TasksProvider with ChangeNotifier {
 
   void changeMode(ThemeMode mode) {
     themeMode = mode;
+    setMode();
     notifyListeners();
   }
 
@@ -35,6 +39,31 @@ class TasksProvider with ChangeNotifier {
 
   void changeLang(String lang) {
     language = lang;
+    setLang();
+    notifyListeners();
+  }
+
+  Future<void> setMode() async {
+    prefs = await SharedPreferences.getInstance();
+    prefs!.setBool('isDark', isDark);
+  }
+
+  Future<void> getMode() async {
+    prefs = await SharedPreferences.getInstance();
+    bool mode = prefs!.getBool('isDark') ?? false;
+    mode ? themeMode = ThemeMode.dark : themeMode = ThemeMode.light;
+    notifyListeners();
+  }
+
+  Future<void> setLang() async {
+    prefs = await SharedPreferences.getInstance();
+    prefs!.setBool('isEnglish', isEnglish);
+  }
+
+  Future<void> getLang() async {
+    prefs = await SharedPreferences.getInstance();
+    bool mode = prefs!.getBool('isEnglish') ?? false;
+    mode ? language = 'en' : language = 'ar';
     notifyListeners();
   }
 }

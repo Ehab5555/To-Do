@@ -22,7 +22,10 @@ void main() {
 
   runApp(
     ChangeNotifierProvider(
-      create: (_) => TasksProvider()..getTasks(),
+      create: (_) => TasksProvider()
+        ..getTasks()
+        ..getMode()
+        ..getLang(),
       child: const TodoApp(),
     ),
   );
@@ -42,7 +45,7 @@ class TodoApp extends StatelessWidget {
         RegisterScreen.routeName: (_) => const RegisterScreen(),
         LoginScreen.routeName: (_) => LoginScreen(),
       },
-      initialRoute: RegisterScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(provider.language),

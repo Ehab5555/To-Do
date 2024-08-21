@@ -96,7 +96,6 @@ class TaskUpdate extends StatelessWidget {
               DefaultTextFormField(
                 controller: descriptionController,
                 hintText: task.description,
-                maxLines: 3,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     descriptionController.text = task.description;

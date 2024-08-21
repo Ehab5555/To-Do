@@ -62,7 +62,6 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             DefaultTextFormField(
               controller: descriptionController,
               hintText: localizations.taskdesc,
-              maxLines: 3,
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return localizations.deserror;

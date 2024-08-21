@@ -76,7 +76,6 @@ class SettingsTab extends StatelessWidget {
                   DropdownButtonHideUnderline(
                     child: DropdownButton(
                       value: provider.language,
-                      autofocus: true,
                       items: [
                         DropdownMenuItem(
                           value: 'en',
